@@ -9,6 +9,7 @@ class DefaultController extends Controller
 {
     
     public function actionIndex() {
+        
         return "index";
     }
 }
