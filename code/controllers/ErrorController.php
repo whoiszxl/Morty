@@ -11,7 +11,7 @@ class ErrorController extends Controller
    
     public function actionError() {
 
-        $this->layout = false;
+        //$this->layout = false;
         //1.记录错误信息到文件和数据库中
         $error = \Yii::$app->errorHandler->exception;
         $err_msg = '';
