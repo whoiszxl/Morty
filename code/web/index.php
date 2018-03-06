@@ -16,6 +16,4 @@ if(file_exists(__DIR__."/version_book.txt")) {
     define("RELEASE_VERSION",time());
 }
 
-echo RELEASE_VERSION;exit;
-
 (new yii\web\Application($config))->run();
