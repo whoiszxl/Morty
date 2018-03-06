@@ -90,7 +90,7 @@
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
                             <span class="m-r-sm text-muted welcome-message">
-                                欢迎使用whoiszxl图书商城管理后台
+                                欢迎使用编程浪子图书商城管理后台
                             </span>
                         </li>
                         <li class="hidden">
@@ -108,7 +108,7 @@
                             <ul class="dropdown-menu dropdown-messages">
                                 <li>
                                     <div class="dropdown-messages-box">
-                                        姓名：whoiszxl郭大爷
+                                        姓名：编程浪子郭大爷
                                         <a href="/web/user/edit" class="pull-right">编辑</a>
                                     </div>
                                 </li>
@@ -140,83 +140,89 @@
                 <div class="col-lg-12">
                     <div class="tab_title">
                         <ul class="nav nav-pills">
-                            <li>
-                                <a href="/web/member/index">会员列表</a>
-                            </li>
                             <li class="current">
-                                <a href="/web/member/comment">会员评论</a>
+                                <a href="/web/stat/index">财务统计</a>
+                            </li>
+                            <li>
+                                <a href="/web/stat/product">商品售卖</a>
+                            </li>
+                            <li>
+                                <a href="/web/stat/member">会员消费统计</a>
+                            </li>
+                            <li>
+                                <a href="/web/stat/share">分享统计</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="row m-t">
+                <div class="col-lg-12" id="container" style="height: 400px;">
+
+                </div>
+                <div class="col-lg-12 m-t">
+                    <form class="form-inline" id="search_form_wrap">
+                        <div class="row p-w-m">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请选择开始时间" name="date_from" class="form-control" value="2017-03-10">
+                                </div>
+                            </div>
+                            <div class="form-group m-r m-l">
+                                <label>至</label>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请选择结束时间" name="date_to" class="form-control" value="2017-04-09">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <a class="btn btn-w-m btn-outline btn-primary search">搜索</a>
+                            </div>
+                        </div>
+                        <hr/>
+                    </form>
                     <table class="table table-bordered m-t">
                         <thead>
                             <tr>
-                                <th>头像</th>
-                                <th>姓名</th>
-                                <th>手机</th>
-                                <th>书籍名称</th>
-                                <th>评论内容</th>
-                                <th>打分</th>
+                                <th>日期</th>
+                                <th>营收金额</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <img alt="image" class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg" style="width: 40px;height: 40px;">
-                                </td>
-                                <td>
-                                    郭威 </td>
-                                <td>
-                                    12312312312 </td>
-                                <td>浪潮之巅</td>
-                                <td>哈哈哈哈或哈哈或</td>
-                                <td>8</td>
+                                <td>2017-03-16</td>
+                                <td>1003.00</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <img alt="image" class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg" style="width: 40px;height: 40px;">
-                                </td>
-                                <td>
-                                    郭威 </td>
-                                <td>
-                                    12312312312 </td>
-                                <td>php开发教程</td>
-                                <td>书是正品的，非常不错的</td>
-                                <td>6</td>
+                                <td>2017-03-15</td>
+                                <td>1007.00</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <img alt="image" class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg" style="width: 40px;height: 40px;">
-                                </td>
-                                <td>
-                                    郭威 </td>
-                                <td>
-                                    12312312312 </td>
-                                <td>php开发教程</td>
-                                <td>书是正品的，非常不错的</td>
-                                <td>8</td>
+                                <td>2017-03-14</td>
+                                <td>1005.00</td>
                             </tr>
                             <tr>
-                                <td>
-                                    <img alt="image" class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg" style="width: 40px;height: 40px;">
-                                </td>
-                                <td>
-                                    郭威 </td>
-                                <td>
-                                    12312312312 </td>
-                                <td>php开发教程</td>
-                                <td>服务非常好</td>
-                                <td>10</td>
+                                <td>2017-03-13</td>
+                                <td>1003.00</td>
+                            </tr>
+                            <tr>
+                                <td>2017-03-12</td>
+                                <td>1003.00</td>
+                            </tr>
+                            <tr>
+                                <td>2017-03-11</td>
+                                <td>1002.00</td>
+                            </tr>
+                            <tr>
+                                <td>2017-03-10</td>
+                                <td>1006.00</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="row">
                         <div class="col-lg-12">
-                            <span class="pagination_count" style="line-height: 40px;">共4条记录 | 每页50条</span>
+                            <span class="pagination_count" style="line-height: 40px;">共7条记录 | 每页50条</span>
                             <ul class="pagination pagination-lg pull-right" style="margin: 0 0 ;">
                                 <li class="active">
                                     <a href="javascript:void(0);">1</a>
@@ -226,7 +232,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
