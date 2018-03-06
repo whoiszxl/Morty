@@ -9,8 +9,6 @@
     <link href="/css/web/bootstrap.min.css" rel="stylesheet">
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/css/web/style.css?ver=20170401" rel="stylesheet">
-    <link href="/plugins/tagsinput/jquery.tagsinput.min.css?ver=20170401" rel="stylesheet">
-    <link href="/plugins/select2/select2.min.css?ver=20170401" rel="stylesheet">
 </head>
 
 <body>
@@ -137,14 +135,15 @@
 
                 </nav>
             </div>
+
             <div class="row  border-bottom">
                 <div class="col-lg-12">
                     <div class="tab_title">
                         <ul class="nav nav-pills">
-                            <li class="current">
+                            <li>
                                 <a href="/web/book/index">图书列表</a>
                             </li>
-                            <li>
+                            <li class="current">
                                 <a href="/web/book/cat">分类列表</a>
                             </li>
                             <li>
@@ -154,91 +153,69 @@
                     </div>
                 </div>
             </div>
-            <div class="row mg-t20 wrap_book_set">
+            <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="text-center">图书设置</h2>
-                    <div class="form-horizontal m-t">
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书分类:</label>
-                            <div class="col-lg-10">
-                                <select name="cat_id" class="form-control">
-                                    <option value="0">请选择分类</option>
-                                    <option value="2">互联网</option>
-                                    <option value="1">政治类</option>
+                    <form class="form-inline wrap_search">
+                        <div class="row  m-t p-w-m">
+                            <div class="form-group">
+                                <select name="status" class="form-control inline">
+                                    <option value="-1">请选择状态</option>
+                                    <option value="1">正常</option>
+                                    <option value="0">已删除</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书名称:</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="请输入图书名" name="name" value="">
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a class="btn btn-w-m btn-outline btn-primary pull-right" href="/web/book/cat_set">
+                                    <i class="fa fa-plus"></i>分类
+                                </a>
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书价格:</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="请输入图书售价" name="price" value="">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">封面图:</label>
-                            <div class="col-lg-10">
-                                <form class="upload_pic_wrap" target="upload_file" enctype="multipart/form-data" method="POST" action="/web/upload/pic">
-                                    <div class="upload_wrap pull-left">
-                                        <i class="fa fa-upload fa-2x"></i>
-                                        <input type="hidden" name="bucket" value="book" />
-                                        <input type="file" name="pic" accept="image/png, image/jpeg, image/jpg,image/gif">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书描述:</label>
-                            <div class="col-lg-8">
-                                <textarea id="editor" name="summary" style="height: 300px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">库存:</label>
-                            <div class="col-lg-2">
-                                <div class="input-group">
-                                    <div class="input-group-addon hidden">
-                                        <a class="disabled" href="javascript:void(0);">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                    </div>
-                                    <input type="text" name="stock" class="form-control" value="1">
-                                    <div class="input-group-addon hidden">
-                                        <a href="javascript:void(0);">
-                                            <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书标签:</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="tags" value="">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <div class="col-lg-4 col-lg-offset-2">
-                                <input type="hidden" name="id" value="0">
-                                <button class="btn btn-w-m btn-outline btn-primary save">保存</button>
-                            </div>
-                        </div>
-                    </div>
+
+                    </form>
+                    <table class="table table-bordered m-t">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>分类名称</th>
+                                <th>状态</th>
+                                <th>权重</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>政治类</td>
+                                <td>已删除</td>
+                                <td>4</td>
+                                <td>
+                                    <a class="m-l recover" href="javascript:void(0);" data="1">
+                                        <i class="fa fa-rotate-left fa-lg"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>互联网</td>
+                                <td>正常</td>
+                                <td>1</td>
+                                <td>
+                                    <a class="m-l" href="/web/book/cat_set?id=2">
+                                        <i class="fa fa-edit fa-lg"></i>
+                                    </a>
+
+                                    <a class="m-l remove" href="javascript:void(0);" data="2">
+                                        <i class="fa fa-trash fa-lg"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
 
         </div>
     </div>

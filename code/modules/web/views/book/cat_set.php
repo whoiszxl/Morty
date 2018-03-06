@@ -9,8 +9,6 @@
     <link href="/css/web/bootstrap.min.css" rel="stylesheet">
     <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="/css/web/style.css?ver=20170401" rel="stylesheet">
-    <link href="/plugins/tagsinput/jquery.tagsinput.min.css?ver=20170401" rel="stylesheet">
-    <link href="/plugins/select2/select2.min.css?ver=20170401" rel="stylesheet">
 </head>
 
 <body>
@@ -137,14 +135,15 @@
 
                 </nav>
             </div>
+
             <div class="row  border-bottom">
                 <div class="col-lg-12">
                     <div class="tab_title">
                         <ul class="nav nav-pills">
-                            <li class="current">
+                            <li>
                                 <a href="/web/book/index">图书列表</a>
                             </li>
-                            <li>
+                            <li class="current">
                                 <a href="/web/book/cat">分类列表</a>
                             </li>
                             <li>
@@ -154,91 +153,33 @@
                     </div>
                 </div>
             </div>
-            <div class="row mg-t20 wrap_book_set">
+            <div class="row m-t  wrap_cat_set">
                 <div class="col-lg-12">
-                    <h2 class="text-center">图书设置</h2>
-                    <div class="form-horizontal m-t">
+                    <h2 class="text-center">分类设置</h2>
+                    <div class="form-horizontal m-t m-b">
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">图书分类:</label>
+                            <label class="col-lg-2 control-label">分类名称:</label>
                             <div class="col-lg-10">
-                                <select name="cat_id" class="form-control">
-                                    <option value="0">请选择分类</option>
-                                    <option value="2">互联网</option>
-                                    <option value="1">政治类</option>
-                                </select>
+                                <input type="text" name="name" class="form-control" placeholder="请输入分类名称~~" value="互联网">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">图书名称:</label>
+                            <label class="col-lg-2 control-label">权重:</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="请输入图书名" name="name" value="">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书价格:</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="请输入图书售价" name="price" value="">
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">封面图:</label>
-                            <div class="col-lg-10">
-                                <form class="upload_pic_wrap" target="upload_file" enctype="multipart/form-data" method="POST" action="/web/upload/pic">
-                                    <div class="upload_wrap pull-left">
-                                        <i class="fa fa-upload fa-2x"></i>
-                                        <input type="hidden" name="bucket" value="book" />
-                                        <input type="file" name="pic" accept="image/png, image/jpeg, image/jpg,image/gif">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书描述:</label>
-                            <div class="col-lg-8">
-                                <textarea id="editor" name="summary" style="height: 300px;"></textarea>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">库存:</label>
-                            <div class="col-lg-2">
-                                <div class="input-group">
-                                    <div class="input-group-addon hidden">
-                                        <a class="disabled" href="javascript:void(0);">
-                                            <i class="fa fa-minus"></i>
-                                        </a>
-                                    </div>
-                                    <input type="text" name="stock" class="form-control" value="1">
-                                    <div class="input-group-addon hidden">
-                                        <a href="javascript:void(0);">
-                                            <i class="fa fa-plus"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">图书标签:</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="tags" value="">
+                                <input type="text" name="weight" class="form-control" placeholder="请输入分类名称~~" value="1">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-lg-4 col-lg-offset-2">
-                                <input type="hidden" name="id" value="0">
+                                <input type="hidden" name="id" value="2">
                                 <button class="btn btn-w-m btn-outline btn-primary save">保存</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>
