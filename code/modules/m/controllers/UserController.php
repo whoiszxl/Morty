@@ -25,4 +25,37 @@ class UserController extends Controller
         $this->layout = false;
         return $this->render('order');
     }
+
+
+    public function actionIndex(){
+        $this->layout = false;
+        return $this->render('index');
+    }
+
+    public function actionAddress(){
+        $this->layout = false;
+        return $this->render('address');
+    }
+
+    public function actionAddress_set(){
+        $this->layout = false;
+        return $this->render('address_set');
+    }
+
+    public function actionFav(){
+        $this->layout = false;
+        return $this->render('fav');
+    }
+
+
+    public function actionComment(){
+        $this->layout = false;
+        return $this->render('comment');
+    }
+
+
+    public function actionComment_set(){
+        $this->layout = false;
+        return $this->render('comment_set');
+    }
 }

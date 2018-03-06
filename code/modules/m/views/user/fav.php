@@ -13,24 +13,25 @@
 <link href="/css/m/app.css?ver=20170401" rel="stylesheet"></head>
 <body>
 <div style="min-height: 500px;">
-	<div class="order_box">
-	<div class="order_header">
-		<h2 style="text-align: center;">支付</h2>
-	</div>
-	<div class="fastway_list_box" style="padding-left: 20px;padding-bottom: 0px;">
-		<ul class="fastway_list">
-			<li><a href="javascript:void(0);" style="padding-left: 0.1rem;"><span>支付金额：78.20</span></a></li>
-			<li><a href="javascript:void(0);" style="padding-left: 0.1rem;"><span>支付备注：购买书籍</span></a></li>
-		</ul>
-	</div>
+	<ul class="fav_list">
+		<li>
+		<a href="/m/product/info?id=2">
+			<i class="pic"><img src="/uploads/book/20170303/a8887738ab1bfd71765dd063fee4ddaa.jpg" style="height: 100px;width: 100px;" /></i>
+			<h2>php开发教程</h2>
+			<b>¥ 45.00</b>
+		</a>
+		<span class="del_fav" data="4"><i class="del_fav_icon"></i></span>
+	</li>
+		<li>
+		<a href="/m/product/info?id=1">
+			<i class="pic"><img src="/uploads/book/20170301/7a976289c2c1f551a4f21232575ba255.jpg" style="height: 100px;width: 100px;" /></i>
+			<h2>浪潮之巅</h2>
+			<b>¥ 88.88</b>
+		</a>
+		<span class="del_fav" data="3"><i class="del_fav_icon"></i></span>
+	</li>
+	</ul>
 </div>
-<div class="op_box">
-	<input style="width: 100%;" type="button" value="微信支付" class="red_btn do_pay"  />
-</div>
-
-<div class="hide_wrap hidden">
-	<input type="hidden" name="pay_order_id" value="33">
-</div></div>
 <div class="copyright clearfix">
 	        <p class="name">欢迎您，whoiszxl</p>
 	    <p class="copyright">由<a href="/" target="_blank">whoiszxl</a>提供技术支持</p>

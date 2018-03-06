@@ -13,24 +13,35 @@
 <link href="/css/m/app.css?ver=20170401" rel="stylesheet"></head>
 <body>
 <div style="min-height: 500px;">
-	<div class="order_box">
-	<div class="order_header">
-		<h2 style="text-align: center;">支付</h2>
-	</div>
-	<div class="fastway_list_box" style="padding-left: 20px;padding-bottom: 0px;">
-		<ul class="fastway_list">
-			<li><a href="javascript:void(0);" style="padding-left: 0.1rem;"><span>支付金额：78.20</span></a></li>
-			<li><a href="javascript:void(0);" style="padding-left: 0.1rem;"><span>支付备注：购买书籍</span></a></li>
-		</ul>
-	</div>
+	<div class="page_title clearfix">
+    <span>常用收货地址</span>
 </div>
-<div class="op_box">
-	<input style="width: 100%;" type="button" value="微信支付" class="red_btn do_pay"  />
-</div>
+<ul class="address_list">
+    	<li>
+		<p><span>whoiszxl</span>13774355081</p>
+		<p>浙江省宁波市海曙区太阳出来了爬山平</p>
+		<div class="addr_op">
+			<em class="del" data="2"><i class="del_icon"></i>删除</em>
+			<a href="/m/user/address_set?id=2"><i class="edit_icon"></i>编辑</a>
+                            <span class="set_default" data="2">设为默认地址 </span>
+            		</div>
+	</li>
+    	<li>
+		<p><span>whoiszxl</span>13774355074</p>
+		<p>天津市河东区狗不理包子100号</p>
+		<div class="addr_op">
+			<em class="del" data="1"><i class="del_icon"></i>删除</em>
+			<a href="/m/user/address_set?id=1"><i class="edit_icon"></i>编辑</a>
+                            <span class="set_default" data="1">设为默认地址 </span>
+            		</div>
+	</li>
+    </ul>
 
-<div class="hide_wrap hidden">
-	<input type="hidden" name="pay_order_id" value="33">
-</div></div>
+
+<div class="op_box">
+    <a href="/m/user/address_set" class="red_btn" style="color: #ffffff;">添加新地址</a>
+</div>
+</div>
 <div class="copyright clearfix">
 	        <p class="name">欢迎您，whoiszxl</p>
 	    <p class="copyright">由<a href="/" target="_blank">whoiszxl</a>提供技术支持</p>

@@ -199,7 +199,7 @@
                                     <img alt="image" class="img-circle" src="/uploads/avatar/20170313/159419a875565b1afddd541fa34c9e65.jpg"
                                         style="width: 40px;height: 40px;">
                                 </td>
-                                <td>郭威</td>
+                                <td>whoiszxl</td>
                                 <td>12312312312</td>
                                 <td>未填写</td>
                                 <td>正常</td>

@@ -37,7 +37,7 @@
 	<b>合计：<strong>¥</strong><font id="price">0.00</font></b>
 </div></div>
 <div class="copyright clearfix">
-	        <p class="name">欢迎您，郭威</p>
+	        <p class="name">欢迎您，whoiszxl</p>
 	    <p class="copyright">由<a href="/" target="_blank">whoiszxl</a>提供技术支持</p>
 </div>
 <div class="footer_fixed clearfix">

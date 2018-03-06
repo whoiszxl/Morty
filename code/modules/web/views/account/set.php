@@ -154,7 +154,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label">姓名:</label>
                             <div class="col-lg-10">
-                                <input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="郭威">
+                                <input type="text" name="nickname" class="form-control" placeholder="请输入姓名~~" value="whoiszxl">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

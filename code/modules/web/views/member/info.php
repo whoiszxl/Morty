@@ -167,7 +167,7 @@
                         <div class="col-lg-9">
                             <dl class="dl-horizontal">
                                 <dt>姓名：</dt>
-                                <dd>郭威</dd>
+                                <dd>whoiszxl</dd>
                                 <dt>手机：</dt>
                                 <dd>12312312312</dd>
                                 <dt>性别：</dt>
