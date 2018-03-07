@@ -11,7 +11,7 @@ class ProductController extends Controller
     //商品列表
     public function actionIndex()
     {
-        $this->layout = false;
+        $this->layout = "main";
         return $this->render('index');
     }
 
@@ -26,7 +26,7 @@ class ProductController extends Controller
     //商品订单
     public function actionOrder()
     {
-        $this->layout = false;
+        $this->layout = "main";
         return $this->render('order');
     }
 }
