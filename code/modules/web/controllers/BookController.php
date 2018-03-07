@@ -6,27 +6,34 @@ use yii\web\Controller;
 
 class BookController extends Controller
 {
+
+    public function __construct($id, $module, array $config = []) {
+        parent::__construct($id, $module, $config);
+        //指定需要加载的layout的名称,不然会默认加载外部的layout
+        $this->layout = "main";
+    }
+
     public function actionIndex()
     {
-        $this->layout = false;
+        
         return $this->render('index');
     }
 
     public function actionSet()
     {
-        $this->layout = false;
+        
         return $this->render('set');
     }
 
     public function actionInfo()
     {
-        $this->layout = false;
+        
         return $this->render('info');
     }
 
     public function actionImages()
     {
-        $this->layout = false;
+        
         return $this->render('images');
     }
 
@@ -34,7 +41,7 @@ class BookController extends Controller
     //图书列表
     public function actionCat()
     {
-        $this->layout = false;
+        
         return $this->render('cat');
     }
 
@@ -42,7 +49,7 @@ class BookController extends Controller
     //图书编辑或添加
     public function actionCat_set()
     {
-        $this->layout = false;
+        
         return $this->render('cat_set');
     }
 

@@ -6,9 +6,17 @@ use yii\web\Controller;
 
 class FinanceController extends Controller
 {
+
+
+    public function __construct($id, $module, array $config = []) {
+        parent::__construct($id, $module, $config);
+        //指定需要加载的layout的名称,不然会默认加载外部的layout
+        $this->layout = "main";
+    }
+
     public function actionIndex()
     {
-        $this->layout = false;
+        
         return $this->render('index');
     }
 
@@ -18,7 +26,7 @@ class FinanceController extends Controller
      */
     public function actionAccount()
     {
-        $this->layout = false;
+        
         return $this->render('account');
     }
 
@@ -27,7 +35,7 @@ class FinanceController extends Controller
      */
     public function actionPay_info()
     {
-        $this->layout = false;
+        
         return $this->render('pay_info');
     }
 
