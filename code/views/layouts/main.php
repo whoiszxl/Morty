@@ -1,3 +1,11 @@
+<?php
+//引入前端资源管理文件
+use app\assets\AppAsset;
+
+AppAsset::register($this);
+?>
+
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -6,10 +14,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>微信图书商城</title>
-    <link href="/css/www/app.css" rel="stylesheet">
+    <?php $this->head(); ?>
 </head>
 
 <body>
+<?php $this->beginBody(); ?>
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-collapse collapse pull-left">
@@ -32,7 +41,9 @@
 
     <?=$content;?>
 
-
+<?php $this->endBody(); ?>
 </body>
 
 </html>
+
+<?php $this->endPage(); ?>

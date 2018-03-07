@@ -1,3 +1,9 @@
+<?php 
+use app\assets\MAsset;
+MAsset::register($this);
+?>
+
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -9,12 +15,11 @@
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
     <title>whoiszxl微信图书商城</title>
-    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="/css/m/css_style.css" rel="stylesheet">
-    <link href="/css/m/app.css?ver=20170401" rel="stylesheet">
+    <?php $this->head(); ?>
 </head>
 
 <body>
+<?php $this->beginBody(); ?>
     <!-- start -->
     <?=$content;?>
     <!-- end -->
@@ -45,6 +50,9 @@
         </span>
     </div>
 
+<?php $this->endBody(); ?>
 </body>
 
 </html>
+
+<?php $this->endPage(); ?>
