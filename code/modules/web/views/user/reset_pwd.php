@@ -1,4 +1,7 @@
-            <div class="row  border-bottom">
+<?php
+Yii::$app->getView()->registerJsFile("/js/web/user/reset_pwd.js",['depends'=>app\assets\WebAsset::className()]);
+?>
+<div class="row  border-bottom">
                 <div class="col-lg-12">
                     <div class="tab_title">
                         <ul class="nav nav-pills">
@@ -11,8 +14,8 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div class="row m-t  user_reset_pwd_wrap">
+</div>
+<div class="row m-t  user_reset_pwd_wrap">
                 <div class="col-lg-12">
                     <h2 class="text-center">修改密码</h2>
                     <div class="form-horizontal m-t m-b">
@@ -53,4 +56,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
+</div>
