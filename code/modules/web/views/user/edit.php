@@ -1,6 +1,8 @@
 
 <?php
-Yii::$app->getView()->registerJsFile("/js/web/user/edit.js",['depends'=>app\assets\WebAsset::className()]);
+use \app\common\services\StaticService;
+StaticService::includeAppJsStatic("/js/web/user/edit.js",\app\assets\WebAsset::className());
+
 ?>
 
 <div class="row  border-bottom">

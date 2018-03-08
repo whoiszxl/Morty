@@ -1,5 +1,6 @@
 <?php
-Yii::$app->getView()->registerJsFile("/js/web/user/reset_pwd.js",['depends'=>app\assets\WebAsset::className()]);
+use \app\common\services\StaticService;
+StaticService::includeAppJsStatic("/js/web/user/reset_pwd.js",\app\assets\WebAsset::className());
 ?>
 <div class="row  border-bottom">
                 <div class="col-lg-12">
