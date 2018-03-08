@@ -3,8 +3,9 @@
 namespace app\modules\web\controllers;
 
 use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
 
     public function __construct($id, $module, array $config = []) {

@@ -3,8 +3,9 @@
 namespace app\modules\web\controllers;
 
 use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
 
-class AccountController extends Controller
+class AccountController extends BaseController
 {
 
 

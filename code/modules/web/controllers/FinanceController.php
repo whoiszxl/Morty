@@ -3,8 +3,9 @@
 namespace app\modules\web\controllers;
 
 use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
 
-class FinanceController extends Controller
+class FinanceController extends BaseController
 {
 
 

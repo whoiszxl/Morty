@@ -3,11 +3,11 @@
 namespace app\modules\web\controllers;
 
 use yii\web\Controller;
-use app\common\components\BaseWebController;
 use app\models\User;
 use app\common\services\UrlService;
+use app\modules\web\controllers\common\BaseController;
 
-class UserController extends BaseWebController
+class UserController extends BaseController
 {
 
     public function __construct($id, $module, array $config = []) {
@@ -45,9 +45,7 @@ class UserController extends BaseWebController
         }
 
         //4.保存用户的登录状态到cookie
-        //加密字符串+"#"+uid,  加密字符串 = md5(login_name+login_pwd+login_salt)
-        $auth_token = md5($user_info['login_name'].$user_info['login_pwd'].$user_info['login_salt']);
-        $this->setCookie("whoiszxl_cookie",$auth_token."#".$user_info['uid']);
+        $this->setLoginStatus($user_info);
 
 
         return $this->redirect(UrlService::buildWebUrl("/dashboard/index"));
@@ -66,6 +64,7 @@ class UserController extends BaseWebController
     }
 
     public function actionLogout(){
-        $this->removeCookie("whoiszxl_cookie");
+        $this->removeLoginStatus();
+        return $this->redirect(UrlService::buildWebUrl("/user/login"));
     }
 }
