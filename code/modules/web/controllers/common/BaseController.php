@@ -10,6 +10,8 @@ class BaseController extends BaseWebController {
 
     protected $auth_cookie_name = "whoiszxl_cookie";
 
+    public $current_user = null; //当前登录用户的信息
+
     public $allowAllAction = [
         "web/user/login"
     ];
@@ -66,6 +68,8 @@ class BaseController extends BaseWebController {
         if($auth_token != $this->geneAuthToken($user_info)){
             return false;
         }
+
+        $this->current_user = $user_info;
 
         return true;
     }

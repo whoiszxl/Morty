@@ -54,7 +54,14 @@ class UserController extends BaseController
 
     //编辑用户信息
     public function actionEdit(){
-        return $this->render('edit');
+
+        if(\Yii::$app->request->isGet){
+
+            //获取当前登录人的信息并且渲染到前端
+            return $this->render("edit", ['user_info'=>$this->current_user]);
+        }
+
+        
     }
 
 
