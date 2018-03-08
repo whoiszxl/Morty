@@ -39,8 +39,7 @@ class UserController extends BaseController
 
         //3.验证密码
         //密码加密算法: md5(login_pwd + md5(login_salt))
-        $auth_pwd = md5($login_pwd.md5($user_info['login_salt']));
-        if($auth_pwd != $user_info['login_pwd']){
+        if($user_info->verifyPassword($login_pwd)){
             return $this->renderJS('请输入正确的密码', UrlService::buildWebUrl('/user/login'));
         }
 
@@ -104,12 +103,11 @@ class UserController extends BaseController
 
         //判断原密码是否正确
         $user_info = $this->current_user;
-        $auth_pwd = md5($old_password.md5($user_info['login_salt']));
-        if($auth_pwd != $user_info['login_pwd']){
+        if(!$user_info->verifyPassword($old_password)){
             return $this->renderJson([], "原密码不正确", -1);
         }
 
-        $user_info->login_pwd = md5($new_password.md5($user_info['login_salt']));
+        $user_info->setPassword($new_password);
         $user_info->updated_time = date("Y-m-d H:i:s");
         $user_info->update(0);
         
