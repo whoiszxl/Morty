@@ -56,18 +56,36 @@ class UserController extends BaseController
     public function actionEdit(){
 
         if(\Yii::$app->request->isGet){
-
             //获取当前登录人的信息并且渲染到前端
             return $this->render("edit", ['user_info'=>$this->current_user]);
         }
 
+        $nickname = trim($this->post("nickname",""));
+        $email = trim($this->post("email",""));
         
+        if(mb_strlen($nickname, "utf-8") < 2){
+            return $this->renderJson([], "请输入合法的姓名",-1);
+        }
+        if(mb_strlen($email, "utf-8") < 5){
+            return $this->renderJson([], "请输入合法的邮箱",-1);
+        }
+
+        $user_info = $this->current_user;
+        $user_info->nickname = $nickname;
+        $user_info->email = $email;
+        $user_info->updated_time = date("Y-m-d H:i:s");
+        $user_info->update(0);
+
+        return $this->renderJson([], "用户信息修改成功");
     }
 
 
     //重置密码
     public function actionResetPwd(){
-        return $this->render('reset_pwd');
+        if(\Yii::$app->request->isGet){
+            return $this->render('reset_pwd',['user_info'=>$this->current_user]);
+        }
+        
     }
 
     public function actionLogout(){
