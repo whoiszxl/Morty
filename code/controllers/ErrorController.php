@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use yii\log\FileTarget;
 use app\common\components\BaseWebController;
+use app\common\services\applog\ApplogService;
 
 
 class ErrorController extends BaseWebController
@@ -38,7 +39,8 @@ class ErrorController extends BaseWebController
 
             $log->export();
             
-            //TODO 还需写入数据库
+            //将错误写入数据库
+            ApplogService::addErrorLog(\Yii::$app->id,$err_msg);
         }
         return $this->render("error", ["err_msg" => $err_msg]);
     }
