@@ -1,29 +1,30 @@
-<div class="row  border-bottom">
-    <div class="col-lg-12">
-        <div class="tab_title">
-            <ul class="nav nav-pills">
-                <li class="current">
-                    <a href="/web/account/index">账户列表</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<?php 
+use app\common\services\UrlService;
+use app\common\services\ConstantMapService;
+use app\common\services\StaticService;
+StaticService::includeAppJsStatic("/js/web/account/index.js",\app\assets\WebAsset::className());
+?>
+
+
+
+<?php echo \Yii::$app->view->renderFile("@app/modules/web/views/common/tab_account.php",['current' => 'index']);?>
+
 <div class="row">
     <div class="col-lg-12">
         <form class="form-inline wrap_search">
             <div class="row m-t p-w-m">
                 <div class="form-group">
                     <select name="status" class="form-control inline">
-                        <option value="-1">请选择状态</option>
-                        <option value="1">正常</option>
-                        <option value="0">已删除</option>
+                        <option value="<?=ConstantMapService::$status_default;?>">请选择状态</option>
+                        <?php foreach($status_mapping as $_status => $_title):?>
+                            <option value="<?=$_status;?>" <?php if($_status == $search_conditions['status']): ?>selected<?php endif;?>><?=$_title;?></option>
+                        <?php endforeach;?>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" name="mix_kw" placeholder="请输入姓名或者手机号码" class="form-control" value="">
+                        <input type="text" name="mix_kw" placeholder="请输入姓名或者手机号码" class="form-control" value="<?=$search_conditions['mix_kw']; ?>">
                         <input type="hidden" name="p" value="1">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-primary search">
@@ -53,51 +54,44 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($list as $_item): ?>
                 <tr>
-                    <td>13</td>
-                    <td>whoiszxl</td>
-                    <td>11012345678</td>
-                    <td>apanly@163.com</td>
+                    <td><?=$_item['uid'];?></td>
+                    <td><?=$_item['nickname'];?></td>
+                    <td><?=$_item['mobile'];?></td>
+                    <td><?=$_item['email'];?></td>
                     <td>
-                        <a href="/web/account/info?id=13">
+                        <a href="<?=UrlService::buildWebUrl('/account/info',['id'=>$_item['uid']]);?>">
                             <i class="fa fa-eye fa-lg"></i>
                         </a>
-                        <a class="m-l" href="/web/account/set?id=13">
+                        <a class="m-l" href="<?=UrlService::buildWebUrl('/account/set',['id'=>$_item['uid']]);?>">
                             <i class="fa fa-edit fa-lg"></i>
                         </a>
 
-                        <a class="m-l remove" href="javascript:void(0);" data="13">
+                        <a class="m-l remove" href="javascript:void(0);" data="<?=$_item['uid'];?>">
                             <i class="fa fa-trash fa-lg"></i>
                         </a>
                     </td>
                 </tr>
-                <tr>
-                    <td>12</td>
-                    <td>whoiszxl郭大爷</td>
-                    <td>11012345679</td>
-                    <td>apanly@126.com</td>
-                    <td>
-                        <a href="/web/account/info?id=12">
-                            <i class="fa fa-eye fa-lg"></i>
-                        </a>
-                        <a class="m-l" href="/web/account/set?id=12">
-                            <i class="fa fa-edit fa-lg"></i>
-                        </a>
-
-                        <a class="m-l remove" href="javascript:void(0);" data="12">
-                            <i class="fa fa-trash fa-lg"></i>
-                        </a>
-                    </td>
-                </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <div class="row">
             <div class="col-lg-12">
-                <span class="pagination_count" style="line-height: 40px;">共2条记录 | 每页50条</span>
+                <span class="pagination_count" style="line-height: 40px;">共<?=$pages['total_count']; ?>条记录 | 每页<?=$pages['page_size']; ?>条</span>
                 <ul class="pagination pagination-lg pull-right" style="margin: 0 0 ;">
-                    <li class="active">
-                        <a href="javascript:void(0);">1</a>
-                    </li>
+                    
+                    <?php for($_page = 1;$_page <= $pages['total_page'];$_page++):?>
+                        <?php if($_page == $pages['p']): ?>
+                            <li class="active">
+                                <a href="<?=UrlService::buildNullUrl();?>"><?=$_page;?></a>
+                            </li>
+                        <?php else:?>
+                            <li>
+                                <a href="<?=UrlService::buildWebUrl('/account/index',['p' => $_page]);?>"><?=$_page;?></a>
+                            </li>
+                        <?php endif;?>
+                    <?php endfor;?>
                 </ul>
             </div>
         </div>
