@@ -39,6 +39,19 @@ class User extends \yii\db\ActiveRecord
 
 
     /**
+     * 设置登录的盐
+     */
+    public function setSalt( $length = 16 ){
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+		$salt = '';
+		for ( $i = 0; $i < $length; $i++ ){
+			$salt .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+		}
+		$this->login_salt = $salt;
+	}
+
+
+    /**
      * 校验密码是否一致
      */
     public function verifyPassword($password) {
