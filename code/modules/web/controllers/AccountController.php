@@ -5,7 +5,9 @@ namespace app\modules\web\controllers;
 use yii\web\Controller;
 use app\modules\web\controllers\common\BaseController;
 use app\models\User;
+use app\common\services\UrlService;
 use app\common\services\ConstantMapService;
+use app\models\log\AppAccessLog;
 
 class AccountController extends BaseController
 {
@@ -150,7 +152,30 @@ class AccountController extends BaseController
 
     //账户详情
     public function actionInfo(){
-        return $this->render('info');
+        //获取传递过来的id
+        $id = intval( $this->get("id",0) );
+        //构建一个返回的url
+        $reback_url = UrlService::buildWebUrl("/account/index");
+        //如果不存在这个id就直接跳回去呀
+		if( !$id ){
+			return $this->redirect( $reback_url );
+		}
+
+        //通过id查询用户信息
+        $info = User::find()->where([ 'uid' => $id ])->one();
+        //不存在也跳回去
+		if( !$info ){
+			return $this->redirect( $reback_url );
+		}
+
+        //访问日志中查询这个人的记录,查最近10条
+		$access_list = AppAccessLog::find()->where([ 'uid' => $id ])->orderBy([ 'id' => SORT_DESC ])->limit( 10 )->all();
+
+        //返回视图并渲染
+		return $this->render("info",[
+			'info' => $info,
+			'access_list' => $access_list
+		]);
     }
 
     //操作方法

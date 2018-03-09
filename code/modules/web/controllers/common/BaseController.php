@@ -5,6 +5,7 @@ namespace app\modules\web\controllers\common;
 use app\common\components\BaseWebController;
 use app\models\User;
 use app\common\services\UrlService;
+use app\common\services\applog\ApplogService;
 
 class BaseController extends BaseWebController {
 
@@ -40,7 +41,7 @@ class BaseController extends BaseWebController {
 
             return false;
         }
-
+        ApplogService::addAppLog( $this->current_user['uid'] );
         return true;
     }
 
