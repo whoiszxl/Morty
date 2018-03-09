@@ -5,20 +5,7 @@ StaticService::includeAppJsStatic("/js/web/user/edit.js",\app\assets\WebAsset::c
 
 ?>
 
-<div class="row  border-bottom">
-    <div class="col-lg-12">
-        <div class="tab_title">
-            <ul class="nav nav-pills">
-                <li class="current">
-                    <a href="/web/user/edit">信息编辑</a>
-                </li>
-                <li>
-                    <a href="/web/user/reset-pwd">修改密码</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<?php echo \Yii::$app->view->renderFile("@app/modules/web/views/common/tab_user.php",['current' => 'edit']);?>
 <div class="row m-t  user_edit_wrap">
     <div class="col-lg-12">
         <h2 class="text-center">账号信息编辑</h2>
