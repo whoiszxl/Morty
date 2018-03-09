@@ -10,36 +10,50 @@ var account_index_ops = {
         });
 
         $(".remove").click(function() {
-            if(!confirm("使唔使删除?")){
-                return;
-            }
             that.ops("remove", $(this).attr("data"));
         });
 
         $(".recover").click(function() {
-            if(!confirm("使唔使恢复?")){
-                return;
-            }
             that.ops("recover", $(this).attr("data"));
         });
     },
 
     ops:function(act,uid){
-        $.ajax({
-            url:common_ops.buildWebUrl("/account/ops"),
-            type:'POST',
-            data:{
-                act:act,
-                uid:uid
+
+        
+
+        callback = {
+            "ok":function(){
+                $.ajax({
+                    url:common_ops.buildWebUrl("/account/ops"),
+                    type:'POST',
+                    data:{
+                        act:act,
+                        uid:uid
+                    },
+                    dataType:'json',
+                    success:function(res){
+                        callback = null;
+                        if(res.code == 200){
+                            callback = function(){
+                                window.location.href = window.location.href;
+                            };
+                            
+                        }
+                        layer.alert(res.msg, callback);
+                    }
+                });
             },
-            dataType:'json',
-            success:function(res){
-                alert(res.msg);
-                if(res.code == 200){
-                    window.location.href = window.location.href;
-                }
+
+            'cancel':function(){
+
             }
-        });
+
+        };
+
+        common_ops.confirm((act == 'remove') ? "使唔使删除?":"使唔使恢复?",callback);
+
+        
     }
 };
 

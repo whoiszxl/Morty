@@ -9,7 +9,7 @@ var user_edit_ops = {
 
             var btn_target = $(this);
             if(btn_target.hasClass("disabled")){
-                alert("不肯你重复点击哦");
+                common_ops.alert("不肯你重复点击哦");
                 return false;
             }
 
@@ -17,12 +17,12 @@ var user_edit_ops = {
             var email = $(".user_edit_wrap input[name=email]").val();
 
             if(nickname.length < 2){
-                alert("请输入合法的姓名");
+                common_ops.tip("请输入合法的姓名",$(".user_edit_wrap input[name=nickname]"));
                 return false;
             }
 
             if(email.length < 5){
-                alert("请输入合法的邮箱");
+                common_ops.tip("请输入合法的邮箱",$(".user_edit_wrap input[name=email]"));
                 return false;
             }
 
@@ -38,10 +38,13 @@ var user_edit_ops = {
                 dataType:'json',
                 success:function(res){
                     btn_target.removeClass("disabled");
-                    alert(res.msg);
+                    callback = null;
                     if(res.code == 200){
-                        window.location.href = window.location.href;
+                        callback = function(){
+                            window.location.href = window.location.href;
+                        }
                     }
+                    common_ops.alert(res.msg,callback);
                 }
             });
         });

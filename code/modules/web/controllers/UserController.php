@@ -92,7 +92,7 @@ class UserController extends BaseController
             return $this->renderJson([], "请输入原密码", -1);
         }
 
-        if(mb_strlen($old_password,"utf-8") < 6){
+        if(mb_strlen($new_password,"utf-8") < 6){
             return $this->renderJson([], "请输入不少于6位的新密码", -1);
         }
         
