@@ -31,7 +31,7 @@ var mod_pwd_ops = {
                 'new_password':new_password
             };
             $.ajax({
-                url:'/web/user/reset-pwd',
+                url:common_ops.buildWebUrl('/user/reset-pwd'),
                 type:'POST',
                 data:data,
                 dataType:'json',
