@@ -96,4 +96,8 @@ class BaseController extends BaseWebController {
         $auth_token = $this->geneAuthToken($user_info);
         $this->setCookie($this->auth_cookie_name,$auth_token."#".$user_info['uid']);
     }
+    
+    public function getUid(){
+		return $this->current_user?$this->current_user['uid']:0;
+	}
 }
