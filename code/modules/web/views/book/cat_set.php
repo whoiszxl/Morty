@@ -1,21 +1,6 @@
 
-<div class="row  border-bottom">
-                <div class="col-lg-12">
-                    <div class="tab_title">
-                        <ul class="nav nav-pills">
-                            <li>
-                                <a href="/web/book/index">图书列表</a>
-                            </li>
-                            <li class="current">
-                                <a href="/web/book/cat">分类列表</a>
-                            </li>
-                            <li>
-                                <a href="/web/book/images">图片资源</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-</div>
+<?php echo \Yii::$app->view->renderFile("@app/modules/web/views/common/tab_book.php", ['current' => 'cat']); ?>
+
 <div class="row m-t  wrap_cat_set">
                 <div class="col-lg-12">
                     <h2 class="text-center">分类设置</h2>
