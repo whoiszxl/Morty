@@ -9,6 +9,7 @@ use app\common\services\applog\ApplogService;
 
 class BaseController extends BaseWebController {
 
+    protected $page_size = 50;
     protected $auth_cookie_name = "whoiszxl_cookie";
 
     public $current_user = null; //当前登录用户的信息
