@@ -3,20 +3,22 @@
 namespace app\modules\m\controllers;
 
 use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
+use app\models\brand\BrandImages;
+use app\models\brand\BrandSetting;
 
+class DefaultController extends BaseController{
 
-class DefaultController extends Controller
-{
-
-    public function __construct($id, $module, array $config = []) {
-        parent::__construct($id, $module, $config);
-        //指定需要加载的layout的名称,不然会默认加载外部的layout
-        $this->layout = "main";
-    }
 
     //品牌首页
-    public function actionIndex()
-    {
-        return $this->render('index');
+    public function actionIndex(){
+
+        $info = BrandSetting::find()->one();
+    	$image_list = BrandImages::find()->all();
+
+        return $this->render('index',[
+        	'info' => $info,
+			'image_list' => $image_list
+		]);
     }
 }

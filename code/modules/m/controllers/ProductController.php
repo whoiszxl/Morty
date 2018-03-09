@@ -3,9 +3,9 @@
 namespace app\modules\m\controllers;
 
 use yii\web\Controller;
+use app\modules\web\controllers\common\BaseController;
 
-
-class ProductController extends Controller
+class ProductController extends BaseController
 {
 
     //商品列表
