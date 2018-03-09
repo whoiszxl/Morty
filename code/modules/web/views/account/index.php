@@ -68,9 +68,15 @@ StaticService::includeAppJsStatic("/js/web/account/index.js",\app\assets\WebAsse
                             <i class="fa fa-edit fa-lg"></i>
                         </a>
 
-                        <a class="m-l remove" href="javascript:void(0);" data="<?=$_item['uid'];?>">
-                            <i class="fa fa-trash fa-lg"></i>
-                        </a>
+                        <?php if($_item['status']): ?>
+                            <a class="m-l remove" href="javascript:void(0);" data="<?=$_item['uid'];?>">
+                                <i class="fa fa-trash fa-lg"></i>
+                            </a>
+                        <?php else:?>
+                            <a class="m-l recover" href="javascript:void(0);" data="<?=$_item['uid'];?>">
+                                <i class="fa fa-rotate-left fa-lg"></i>
+                            </a>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

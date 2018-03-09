@@ -72,4 +72,41 @@ class AccountController extends BaseController
         return $this->render('info');
     }
 
+    //操作方法
+    public function actionOps(){
+        if(!\Yii::$app->request->isPost){
+            return $this->renderJson([],"系统繁忙,请稍后再操作哦",-1);
+        }
+
+        $uid = intval($this->post("uid", 0));
+        $act = trim($this->post("act", ""));
+
+        if(!$uid){
+            return $this->renderJson([], "请选择需要操作的账号!!",-1);
+        }
+
+        if(!in_array($act, ["remove","recover"])){
+            return $this->renderJson([], "操作有毛病了,please reclick~~~",-1);
+        }
+
+        $user_info = User::find()->where(['uid'=>$uid])->one();
+        if(!$user_info){
+            return $this->renderJsoon([], "你要操作的账号不在了",-1);
+        }
+
+        switch($act){
+            case "remove":
+                $user_info->status = 0;
+                break;
+            case "recover":
+                $user_info->status = 1;
+                break;
+        }
+
+        $user_info->updated_time = date("Y-m-d H:i:s");
+        $user_info->update(0);
+
+        return $this->renderJson([], "操作成功了");
+    }
+
 }
