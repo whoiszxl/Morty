@@ -7,7 +7,7 @@ use app\models\log\AppAccessLog;
 use app\models\log\AppLog;
 use Yii;
 
-class ApplogService {
+class AppLogService {
 
 
     public static function addErrorLog($appname,$content){
