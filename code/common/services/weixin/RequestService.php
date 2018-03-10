@@ -4,7 +4,7 @@ namespace app\common\services\weixin;
 
 use app\common\services\BaseService;
 use app\common\components\HttpClient;
-use app\models\oauth\OauthAccessToken;
+use app\models\member\OauthAccessToken;
 
 class RequestService extends BaseService{
 

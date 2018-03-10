@@ -4,6 +4,7 @@ namespace app\modules\weixin\controllers;
 
 use app\common\services\UrlService;
 use app\common\services\weixin\RequestService;
+use app\common\components\BaseWebController;
 
 class MenuController extends BaseWebController{
     
