@@ -53,6 +53,9 @@ $config = [
         'm' => [
             'class' => 'app\modules\m\MModule',
         ],
+        'weixin' => [
+            'class' => 'app\modules\weixin\WeixinModule',
+        ],
     ],
 ];
 
