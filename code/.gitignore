@@ -28,3 +28,8 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
+
+
+# my settings
+config/db.php
+config/params.php
