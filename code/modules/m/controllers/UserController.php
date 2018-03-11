@@ -2,6 +2,7 @@
 
 namespace app\modules\m\controllers;
 
+use yii\web\Controller;
 use app\modules\m\controllers\common\BaseController;
 use app\models\oauth\OauthMemberBind;
 use app\models\sms\SmsCaptcha;
@@ -13,8 +14,10 @@ use app\common\services\UtilService;
 class UserController extends BaseController
 {
 
-    public function __construct($id, $module, array $config = []) {
-        return $this->render('index');
+    public function actionIndex(){
+        return $this->render('index',[
+        	'current_user' => $this->current_user
+		]);
     }
 
     //绑定用户
@@ -124,11 +127,6 @@ class UserController extends BaseController
         return $this->render('order');
     }
 
-
-    public function actionIndex(){
-        
-        return $this->render('index');
-    }
 
     public function actionAddress(){
         
