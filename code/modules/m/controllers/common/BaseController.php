@@ -5,6 +5,7 @@ use app\common\components\BaseWebController;
 use app\common\services\UrlService;
 use app\common\services\UtilService;
 use app\models\member\Member;
+use yii\log\FileTarget;
 
 class BaseController extends BaseWebController {
 
@@ -55,6 +56,7 @@ class BaseController extends BaseWebController {
      */
 	public function beforeAction( $action ){
 		$login_status = $this->checkLoginStatus();
+		$this->record_log("login_status 登录状态:".$login_status );
 		$this->setMenu();
 
 		if ( in_array($action->getUniqueId(), $this->allowAllAction ) ) {
@@ -182,6 +184,22 @@ class BaseController extends BaseWebController {
 		}
 
 		\Yii::$app->view->params['menu_hide'] = $menu_hide;
+	}
+
+
+	/**
+     * 记录日志
+     */
+	public static function record_log($msg){
+		$log = new FileTarget();
+		$log->logFile = \Yii::$app->getRuntimePath() . "/logs/wx_bind_".date("Ymd").".log";
+		$log->messages[] = [
+			"[url:{$_SERVER['REQUEST_URI']}][post:".http_build_query($_POST)."] [msg:{$msg}]",
+			1,
+			'application',
+			microtime(true)
+		];
+		$log->export();
 	}
 
     /**
