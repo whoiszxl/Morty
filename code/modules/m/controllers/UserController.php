@@ -14,9 +14,7 @@ class UserController extends BaseController
 {
 
     public function __construct($id, $module, array $config = []) {
-        return $this->render('index',[
-        	'current_user' => $this->current_user
-		]);
+        return $this->render('index');
     }
 
     //绑定用户
