@@ -87,6 +87,7 @@ class OauthController extends BaseController {
 			if ( $ret_token['scope'] == "snsapi_userinfo" ){
                 //通过access_token和openid获取到微信用户信息
 				$wechat_userinfo = ClientService::getUserInfo( "weixin",$ret_token['access_token'],[ 'uid' => $openid ] );
+                $this->record_log("wechat_userinfo is is is is:".var_export($wechat_userinfo,true) );
                 //信息存在,如果存在unionid就存一下
                 if ( $wechat_userinfo ) {
 					if( isset( $wechat_userinfo['unionid']) ){

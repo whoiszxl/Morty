@@ -125,7 +125,7 @@ class UserController extends BaseController
 		//设置登录态
 		$this->record_log("登录成功后跳转的url是:".$url);	
 		$this->setLoginStatus( $member_info );
-		return $this->renderJSON([ 'url' => $url  ],"绑定成功~~");
+		return $this->renderJSON([ 'url' => UrlService::buildMUrl("/default/index")  ],"绑定成功~~");
     }
 
     //购物车

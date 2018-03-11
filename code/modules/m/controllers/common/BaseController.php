@@ -65,21 +65,28 @@ class BaseController extends BaseWebController {
 			if( \Yii::$app->request->isAjax ){
 				$this->renderJSON([],"未登录,系统将引导您重新登录~~",-302);
 			}else{
+				//获取user/bind的地址
 				$redirect_url = $this->getBindUrl();
+				//如果当前是微信浏览器
 				if( UtilService::isWechat() ){
+					//获取到cookie中的openid
 					$openid = $this->getCookie($this->auth_cookie_current_openid,"");
+					//存在的话就直接通过请求
 					if( $openid ){
 						if (in_array( $action->getUniqueId(), $this->special_AllowAction ) ){
 							return true;
 						}
 					}else{
+						//不存在就直接获取登录的地址
 						$redirect_url = $this->getAuthLoginUrl();
 					}
 				}else{
+					//如果是浏览器的话,直接过滤特殊url就是了
 					if ( in_array( $action->getUniqueId(), $this->special_AllowAction ) ) {
 						return true;
 					}
 				}
+				//重定向到登录地址
 				$this->redirect( $redirect_url );
 			}
 			return false;
