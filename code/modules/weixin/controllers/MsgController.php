@@ -46,17 +46,17 @@ class MsgController extends BaseController{
 		$timestamp = trim( $this->get("timestamp","") );
 		$nonce = trim( $this->get("nonce","") );
 
-		$config = \Yii::$app->params['weixin'];
-		$target = new MsgCryptService( $config['token'], $config['aeskey'], $config['appid']);
-		$err_code = $target->decryptMsg($msg_signature, $timestamp, $nonce, $xml_data, $decode_xml);
-		if ( $err_code != 0) {
-            $this->record_log( "[那个加密消息报错了]:" );
-			return 'error decode ~~';
-		}
+		// $config = \Yii::$app->params['weixin'];
+		// $target = new MsgCryptService( $config['token'], $config['aeskey'], $config['appid']);
+		// $err_code = $target->decryptMsg($msg_signature, $timestamp, $nonce, $xml_data, $decode_xml);
+		// if ( $err_code != 0) {
+        //     $this->record_log( "[那个加密消息报错了]:" );
+		// 	return 'error decode ~~';
+		// }
 
-		$this->record_log( '[decode_xml]:'.$decode_xml );
+		//$this->record_log( '[decode_xml]:'.$decode_xml );
 
-		MessageService::add( $decode_xml );
+		//MessageService::add( $decode_xml );
 
 		$xml_obj = simplexml_load_string($decode_xml, 'SimpleXMLElement', LIBXML_NOCDATA);
 
