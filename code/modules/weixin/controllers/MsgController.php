@@ -16,8 +16,10 @@ class MsgController extends BaseController{
     public function actionIndex(){
         
         if(!$this->checkSignature()){
+            $this->record_log( "[微信签名验证是否通过]:未通过" );
             return "error signature";
         }
+        $this->record_log( "[微信签名验证是否通过]:通过了" );
 
         //微信第一次认证
         if(array_key_exists("echostr",$_GET) && $_GET["echostr"]){
