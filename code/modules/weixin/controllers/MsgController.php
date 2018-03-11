@@ -120,9 +120,13 @@ class MsgController extends BaseController{
 
 
     private function search( $kw ){
-		$res = SearchService::search( [ 'kw' => $kw,'limit' => 3 ] );
+        $this->record_log( "[开始搜索了 ---------]" );
+        $res = SearchService::search( [ 'kw' => $kw,'limit' => 3 ] );
+        $this->record_log( "[查询的记录 ---------]".json_encode($res) );
 		$data = $res['total']?$this->getRichXml( $res['data'] ):$this->defaultTip();
-		$type = $res['total']?"rich":"text";
+        $type = $res['total']?"rich":"text";
+        
+        $this->record_log( "[结束搜索了 ---------]" );
 		return ['type' => $type ,"data" => $data];
 	}
 
