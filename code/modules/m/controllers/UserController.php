@@ -11,6 +11,7 @@ use app\models\member\Member;
 use app\common\services\member\MemberService;
 use app\common\services\UrlService;
 use app\common\services\UtilService;
+use app\common\services\QueueListService;
 use yii\log\FileTarget;
 
 class UserController extends BaseController
@@ -107,11 +108,11 @@ class UserController extends BaseController
 				$this->record_log("end bind wechat and member");	
 
 				//绑定之后要做的事情
-				// QueueListService::addQueue( "bind",[
-				// 	'member_id' => $member_info['id'],
-				// 	'type' => 1,
-				// 	'openid' => $model_bind->openid
-				// ] );
+				QueueListService::addQueue( "bind",[
+					'member_id' => $member_info['id'],
+					'type' => 1,
+					'openid' => $model_bind->openid
+				] );
 			}
 		}
 
