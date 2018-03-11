@@ -43,6 +43,8 @@ class OauthController extends BaseController {
 
         //通过code获取到access_token
         $ret_token = ClientService::getAccessToken( 'weixin',[ 'code' => $code ] );
+        var_dump($ret_token);
+        exit;
         //不存在,也清除之
         if( !$ret_token ){
             $this->removeWxCookie();
