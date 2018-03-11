@@ -58,6 +58,8 @@ class UserController extends BaseController
         //通过手机号查询数据库是否存在这条用户记录
 		$member_info = Member::find()->where([ 'mobile' => $mobile,'status' => 1 ])->one();
 
+		$this->record_log("database have this member_info:".var_export($member_info,true) );
+
         //不存在
 		if( !$member_info ){
             //将用户保存到数据库
@@ -75,14 +77,19 @@ class UserController extends BaseController
 			return $this->renderJSON([], "您的账号已被禁止，请联系客服解决~~", -1);
 		}
 
+		$this->record_log("openid is :".$openid );		
         // 判断openid是否存在
 		if ($openid) {
 			//检查该手机号是否绑定过其他微信（一个手机号只能绑定一个微信,也只能绑定一个支付宝）
             $client_type = ConstantMapService::$client_type_wechat;
             //查询数据库 看看是否已经绑定过了
 			$bind_info = OauthMemberBind::findOne([ 'member_id' => $member_info['id'], "openid" => $openid ,'type' => $client_type ]);
-            //未绑定,需要绑定
+			
+			$this->record_log("have bind?? :".json_encode($bind_info) );	
+			
+			//未绑定,需要绑定
             if ( ! $bind_info) {
+				$this->record_log("begin bind wechat and member");	
                 //将每个数据填充到数据库
 				$model_bind  = new OauthMemberBind();
 				$model_bind->member_id = $member_info['id'];
@@ -94,6 +101,8 @@ class UserController extends BaseController
 				$model_bind->updated_time = $date_now;
 				$model_bind->created_time = $date_now;
 				$model_bind->save(0);
+
+				$this->record_log("end bind wechat and member");	
 
 				//绑定之后要做的事情
 				// QueueListService::addQueue( "bind",[
@@ -110,6 +119,7 @@ class UserController extends BaseController
 			$url = $this->getAuthLoginUrl('snsapi_userinfo',$referer);
 		}
 
+		//设置登录态
 		$this->setLoginStatus( $member_info );
 		return $this->renderJSON([ 'url' => $url  ],"绑定成功~~");
     }
@@ -153,5 +163,21 @@ class UserController extends BaseController
     public function actionComment_set(){
         
         return $this->render('comment_set');
-    }
+	}
+	
+
+	/**
+     * 记录日志
+     */
+	public static function record_log($msg){
+		$log = new FileTarget();
+		$log->logFile = Yii::$app->getRuntimePath() . "/logs/wx_bind_".date("Ymd").".log";
+		$log->messages[] = [
+			"[url:{$_SERVER['REQUEST_URI']}][post:".http_build_query($_POST)."] [msg:{$msg}]",
+			1,
+			'application',
+			microtime(true)
+		];
+		$log->export();
+	}
 }
