@@ -2,6 +2,7 @@
 
 namespace app\modules\m\controllers;
 
+use app\common\services\ConstantMapService;
 use yii\web\Controller;
 use app\modules\m\controllers\common\BaseController;
 use app\models\oauth\OauthMemberBind;
