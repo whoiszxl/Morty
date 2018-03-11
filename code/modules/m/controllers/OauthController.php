@@ -64,7 +64,7 @@ class OauthController extends BaseController {
         //记录日志
         $this->record_log("auth info:".var_export($ret_token,true) );
 
-        //将两个id存入数据库
+        //将两个id存入缓存
 		$this->setCookie($this->auth_cookie_current_openid,$openid);
 		$this->setCookie($this->auth_cookie_current_unionid,$unionid);
 

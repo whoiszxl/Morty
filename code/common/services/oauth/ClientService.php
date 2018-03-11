@@ -35,11 +35,16 @@ class ClientService extends  BaseService  {
 		return $ret;
 	}
 
+	/**
+	 * 获取微信用户的userinfo信息
+	 */
 	public static function getUserInfo( $type,$access_token = '',$params = [] ){
-		
+		//通过命名空间拼上Weixin.Service实例化对象
 		$client_name = __NAMESPACE__."\\".ucfirst($type)."Service";
 		$target = new $client_name();
+		//通过实例化出来的service再去通过access_token和openid参数去获取用户信息
 		$ret = $target->getUserInfo( $access_token,$params  );
+		//不存在就报错
 		if( !$ret ){
 			return self::_err( $target->getLastErrorMsg() );
 		}

@@ -3,7 +3,7 @@ namespace app\common\services\oauth;
 use app\common\components\HttpClient;
 
 /**
- * 微信调用服务
+ * 微信调用服务,登录获取access_token等都封装好了
  */
 class WeixinService extends  ClientBase {
 
