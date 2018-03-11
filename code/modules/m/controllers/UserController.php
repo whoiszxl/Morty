@@ -172,7 +172,7 @@ class UserController extends BaseController
      */
 	public static function record_log($msg){
 		$log = new FileTarget();
-		$log->logFile = Yii::$app->getRuntimePath() . "/logs/wx_bind_".date("Ymd").".log";
+		$log->logFile = \Yii::$app->getRuntimePath() . "/logs/wx_bind_".date("Ymd").".log";
 		$log->messages[] = [
 			"[url:{$_SERVER['REQUEST_URI']}][post:".http_build_query($_POST)."] [msg:{$msg}]",
 			1,
