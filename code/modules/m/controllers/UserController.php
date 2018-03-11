@@ -10,6 +10,7 @@ use app\models\member\Member;
 use app\common\services\member\MemberService;
 use app\common\services\UrlService;
 use app\common\services\UtilService;
+use yii\log\FileTarget;
 
 class UserController extends BaseController
 {
