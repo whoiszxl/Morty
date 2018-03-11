@@ -45,8 +45,6 @@ class OauthController extends BaseController {
         $ret_token = ClientService::getAccessToken( 'weixin',[ 'code' => $code ] );
         //不存在,也清除之
         if( !$ret_token ){
-            echo "会执行这里吗";
-            exit;
             $this->removeWxCookie();
             $this->record_log("weixin get userinfo fail:".ClientService::getLastErrorMsg() );
             return $this->goHome();
@@ -54,7 +52,9 @@ class OauthController extends BaseController {
 
         //获取到openid和unionid,
         $openid  = isset($ret_token['openid'])?$ret_token['openid']:'';
+        echo "获取openid:".$openid."<br>";
         $unionid  = isset($ret_token['unionid'])?$ret_token['unionid']:'';
+        echo "获取到unionid:".$unionid."<br>";
 
         //不存在清除cookie
         if( !$openid  ){
@@ -72,6 +72,7 @@ class OauthController extends BaseController {
 
         //查询数据库中openid,并且类型为wechat的数据
         $reg_bind = OauthMemberBind::findOne([ "openid" => $openid,'type' => ConstantMapService::$client_type_wechat ]);
+        echo "查询绑定关系:".json_encode($reg_bind)."<br>";
 
         if( $reg_bind ){//如果已经绑定了
             //通过id和status查询到这条记录

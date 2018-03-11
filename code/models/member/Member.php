@@ -20,6 +20,16 @@ use Yii;
  */
 class Member extends \yii\db\ActiveRecord
 {
+
+    public function setSalt( $length = 16 ){
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+		$salt = '';
+		for ( $i = 0; $i < $length; $i++ ){
+			$salt .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+		}
+		$this->salt = $salt;
+	}
+
     /**
      * @inheritdoc
      */
