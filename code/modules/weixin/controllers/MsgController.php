@@ -26,7 +26,8 @@ class MsgController extends BaseController{
             return $_GET["echostr"];
         }
 
-        $this->search( "你好" );
+        $res = $this->search( "三体" );
+        $plain_data = $this->richTpl($from_username,$to_username,$res['data']);
         exit;
         /**
          * 因为很多都设置了register_globals禁止,不能用$GLOBALS["HTTP_RAW_POST_DATA"];
