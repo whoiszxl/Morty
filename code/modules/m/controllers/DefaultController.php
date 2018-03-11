@@ -14,8 +14,10 @@ class DefaultController extends BaseController{
     public function actionIndex(){
 
         $info = BrandSetting::find()->one();
-    	$image_list = BrandImages::find()->all();
-
+        $image_list = BrandImages::find()->all();
+        
+        echo $this->getCookie($this->auth_cookie_current_openid,"");
+        exit;
         return $this->render('index',[
         	'info' => $info,
 			'image_list' => $image_list
