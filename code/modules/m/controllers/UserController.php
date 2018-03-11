@@ -12,7 +12,7 @@ use app\common\services\member\MemberService;
 use app\common\services\UrlService;
 use app\common\services\UtilService;
 use app\common\services\QueueListService;
-use yii\log\FileTarget;
+
 
 class UserController extends BaseController
 {
@@ -170,18 +170,5 @@ class UserController extends BaseController
 	}
 	
 
-	/**
-     * 记录日志
-     */
-	public static function record_log($msg){
-		$log = new FileTarget();
-		$log->logFile = \Yii::$app->getRuntimePath() . "/logs/wx_bind_".date("Ymd").".log";
-		$log->messages[] = [
-			"[url:{$_SERVER['REQUEST_URI']}][post:".http_build_query($_POST)."] [msg:{$msg}]",
-			1,
-			'application',
-			microtime(true)
-		];
-		$log->export();
-	}
+	
 }
