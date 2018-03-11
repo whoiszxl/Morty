@@ -38,6 +38,7 @@ class MsgController extends BaseController{
         //打一个日志
 		$this->record_log( "[xml_data]:". $xml_data );
 		if( !$xml_data ){
+            $this->record_log( "[怕是xml消息没通过]" );
 			return 'error xml ~~';
 		}
 
@@ -49,6 +50,7 @@ class MsgController extends BaseController{
 		$target = new MsgCryptService( $config['token'], $config['aeskey'], $config['appid']);
 		$err_code = $target->decryptMsg($msg_signature, $timestamp, $nonce, $xml_data, $decode_xml);
 		if ( $err_code != 0) {
+            $this->record_log( "[那个加密消息报错了]:" );
 			return 'error decode ~~';
 		}
 
