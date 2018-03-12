@@ -2,6 +2,8 @@
 
 namespace app\assets;
 
+use app\common\services\UrlService;
+use app\common\services\UtilService;
 use yii\web\AssetBundle;
 
 class MAsset extends AssetBundle
