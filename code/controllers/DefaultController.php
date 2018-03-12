@@ -6,6 +6,7 @@ use app\common\components\BaseWebController;
 use app\common\services\captcha\ValidateCode;
 use app\common\services\UtilService;
 use app\models\sms\SmsCaptcha;
+use app\common\services\AreaService;
 
 
 class DefaultController extends BaseWebController{
@@ -63,4 +64,10 @@ class DefaultController extends BaseWebController{
 		}
 		return $this->renderJSON([],"unknown",-1);
     }
+
+    public function actionCascade(){
+		$province_id = $this->get('id',0);
+		$tree_info = AreaService::getProvinceCityTree($province_id);
+		return $this->renderJSON( $tree_info );
+	}
 }

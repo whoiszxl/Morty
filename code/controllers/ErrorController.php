@@ -44,4 +44,25 @@ class ErrorController extends BaseWebController
         }
         return $this->render("error", ["err_msg" => $err_msg]);
     }
+
+    public function actionCapture(){
+		$yii_cookies = [];
+		$cookies = Yii::$app->request->cookies;
+		foreach( $_COOKIE as $_c_key => $_c_val ){
+			$yii_cookies[] = $_c_key.":".$cookies->get($_c_key);
+		}
+
+		$referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
+		$ua = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'';
+		$url = $this->post("url","");
+		$message = $this->post("message","");
+		$error = $this->post("error","");
+		$err_msg = "JS ERROR：[url:{$referer}],[ua:{$ua}],[js_file:{$url}],[error:{$message}],[error_info:{$error}]";
+
+		if( !$url ){
+			$err_msg .= ",[cookie:{".implode(";",$yii_cookies)."}]";
+		}
+
+		ApplogService::addErrorLog("app-js",$err_msg);
+	}
 }
