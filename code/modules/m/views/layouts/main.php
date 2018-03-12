@@ -1,4 +1,6 @@
 <?php 
+use \app\common\services\UrlService;
+use \app\common\services\UtilService;
 use app\assets\MAsset;
 MAsset::register($this);
 ?>
@@ -14,7 +16,7 @@ MAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
-    <title>whoiszxl微信图书商城</title>
+    <title><?=Yii::$app->params['title'];?></title>
     <?php $this->head(); ?>
 </head>
 
@@ -25,31 +27,22 @@ MAsset::register($this);
     <!-- end -->
     
     <div class="copyright clearfix">
-        <p class="name">欢迎您，whoiszxl</p>
+    <?php if( isset( $this->params['current_user'] ) ):?>
+        <p class="name">欢迎您，<?=UtilService::encode( $this->params['current_user']["nickname"] );?></p>
+	<?php endif;?>
         <p class="copyright">由
             <a href="/" target="_blank">whoiszxl</a>提供技术支持</p>
     </div>
     <div class="footer_fixed clearfix">
-        <span>
-            <a href="/m/" class="default">
-                <i class="home_icon"></i>
-                <b>首页</b>
-            </a>
-        </span>
-        <span>
-            <a href="/m/product/index" class="product">
-                <i class="store_icon"></i>
-                <b>图书</b>
-            </a>
-        </span>
-        <span>
-            <a href="/m/user/index" class="user">
-                <i class="member_icon"></i>
-                <b>我的</b>
-            </a>
-        </span>
+	<span><a href="<?=UrlService::buildMUrl("/default/index");?>" class="default"><i class="home_icon"></i><b>首页</b></a></span>
+	<span><a href="<?=UrlService::buildMUrl("/product/index");?>" class="product"><i class="store_icon"></i><b>图书</b></a></span>
+	<span><a href="<?=UrlService::buildMUrl("/user/index");?>" class="user"><i class="member_icon"></i><b>我的</b></a></span>
     </div>
 
+
+<div class="layout_hide_wrap hidden">
+    <input type="hidden" id="share_info" value='<?=Yii::$app->getView()->params['share_info'];?>'>
+</div>
 <?php $this->endBody(); ?>
 </body>
 
