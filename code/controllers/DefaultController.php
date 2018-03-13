@@ -9,6 +9,7 @@ use app\models\sms\SmsCaptcha;
 use app\common\services\AreaService;
 
 
+
 class DefaultController extends BaseWebController{
     
     private $captcha_cookie_name = "validate_code";
@@ -69,5 +70,13 @@ class DefaultController extends BaseWebController{
 		$province_id = $this->get('id',0);
 		$tree_info = AreaService::getProvinceCityTree($province_id);
 		return $this->renderJSON( $tree_info );
-	}
+    }
+    
+    public function actionQrcode(){
+		$qr_code_url = $this->get("qr_code_url","");
+		header('Content-type: image/png');
+		QrCode::png($qr_code_url,false,Enum::QR_ECLEVEL_H,5,0,false);
+		exit();
+    }
+    
 }
