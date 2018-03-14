@@ -7,6 +7,8 @@ use app\common\services\captcha\ValidateCode;
 use app\common\services\UtilService;
 use app\models\sms\SmsCaptcha;
 use app\common\services\AreaService;
+use dosamigos\qrcode\lib\Enum;
+use dosamigos\qrcode\QrCode;
 
 
 
